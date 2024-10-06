@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.ui.Alignment
@@ -19,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.irisa.lab7_retrofit.networking.response.MealCategory
 import coil.compose.rememberAsyncImagePainter
 import com.irisa.lab7_retrofit.navigation.AppBar
+import com.irisa.lab7_retrofit.navigation.NavigationState
 import com.irisa.lab7_retrofit.ui.categories.viewmodel.CategoryViewModel
 import com.irisa.lab7_retrofit.ui.theme.Lab7_retrofitTheme
 
@@ -39,20 +41,24 @@ fun Categories_Screen(navController: NavController) {
             modifier = Modifier.padding(paddingValues) // Aplica el padding proporcionado por Scaffold
         ) {
             items(meals) { meal ->
-                Category_Card(meal)
+                Category_Card(meal, navController)
             }
         }
     }
 }
 
 @Composable
-fun Category_Card(meal: MealCategory){
+fun Category_Card(meal: MealCategory, navController: NavController){
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp),
+            .padding(top = 16.dp)
+            .clickable {
+                navController.navigate(NavigationState.MealsFilters.createRoute(meal.category))
+            },
         colors = CardDefaults.cardColors(containerColor = Color(0xFF8797AF))
+
     ){
         Row(){
             Image(

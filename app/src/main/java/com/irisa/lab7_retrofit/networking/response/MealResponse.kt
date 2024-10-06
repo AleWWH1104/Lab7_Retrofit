@@ -14,9 +14,9 @@ data class MealCategory(
 )
 
 data class MealFilter(
-    val idMeal: String,
-    val strMeal: String,
-    val strMealThumb: String
+    @SerializedName("idMeal") val id: String,
+    @SerializedName("strMeal") val name: String,
+    @SerializedName("strMealThumb") val imageUrl: String
 )
 
 data class MealLook(
