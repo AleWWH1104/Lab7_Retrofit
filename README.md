@@ -1,7 +1,7 @@
 # Lab7_Retrofit
 
-(categorias.png)
+![Pantalla principal](categorias.png)
 
-(recetas.png)
+![Recetas](recetas.png)
 
-(detalle.png)
+![Detalle de recetas](detalle.png)
